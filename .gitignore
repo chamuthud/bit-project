@@ -1,0 +1,111 @@
+# =========================================
+# Operating System Files
+# =========================================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.swp
+*~
+
+# =========================================
+# IDE Files & Configuration
+# =========================================
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/nb/
+/nbdist/
+/.nb-gradle/
+
+# =========================================
+# Dependency Directories
+# =========================================
+# Node dependencies (for Angular)
+node_modules/
+
+# =========================================
+# Build Artifacts & Generated Code
+# =========================================
+# Maven build directory (for Spring Boot)
+target/
+
+# Java compiled classes (usually in target/)
+*.class
+
+# Packaged applications (usually in target/)
+*.jar
+*.war
+*.ear
+
+# Angular build output
+dist/
+www/
+
+# Angular cache / temp files
+.angular/cache
+.npm/
+
+# TypeScript compilation output (if configured outside dist/)
+*.js.map
+*.js
+
+# =========================================
+# Logs & Temporary Files
+# =========================================
+logs/
+*.log
+npm-debug.log*
+yarn-error.log
+yarn-debug.log
+
+# =========================================
+# Sensitive Information - VERY IMPORTANT!
+# =========================================
+# Environment variables file
+.env*
+!.env.example
+!.env.sample
+
+# Spring Boot application properties containing secrets (adjust as needed)
+# It's common to commit application.properties/yml BUT ignore profile-specific
+# or local ones that might contain sensitive data. REVIEW CAREFULLY.
+# Example: Ignore local dev properties but keep the main one.
+# application-local.properties
+# application-dev.properties
+# application-secret.yml
+
+# Other potential credential files
+credentials.*
+secrets.*
+
+# =========================================
+# Other
+# =========================================
+# Coverage reports
+coverage/
+lcov.info
+
+# Maven Wrapper (usually committed, but sometimes ignored - check team practice)
+# .mvn/wrapper/maven-wrapper.jar 
