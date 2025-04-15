@@ -1,0 +1,59 @@
+
+:host {
+    
+    $header-bg: #2c3e50; 
+    $header-link-color: #ecf0f1; 
+    $header-link-hover: #3498db; 
+  
+    header {
+      background-color: $header-bg;
+      padding-top: 0.8rem;
+      padding-bottom: 0.8rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  
+      .h4 a { 
+        color: $header-link-color;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.2s ease-in-out;
+  
+        &:hover {
+          color: $header-link-hover;
+        }
+      }
+  
+      .nav-link {
+        color: $header-link-color;
+        padding: 0.5rem 1rem;
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        border-radius: 4px; 
+  
+        &.active, 
+        &:hover {
+          color: $header-bg; 
+          background-color: $header-link-color; 
+        }
+      }
+  
+     
+      .dropdown-toggle {
+         &::after { 
+           border-top-color: $header-link-color; 
+         }
+      }
+  
+      .dropdown-menu {
+        margin-top: 0.5rem; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        border: none;
+      }
+  
+      .dropdown-item {
+          transition: background-color 0.2s ease-in-out;
+          &:active { 
+              background-color: $header-link-hover;
+              color: white;
+          }
+      }
+    }
+  }

@@ -1,0 +1,66 @@
+// app/features/project/components/project-list/project-list.component.scss
+
+:host {
+    // Table variables
+    $table-hover-bg: #f1f3f5; // Light grey hover
+    $table-head-bg: #e9ecef; // Slightly darker grey for header
+  
+    h2 {
+      margin-bottom: 1rem; // Space below heading
+    }
+  
+    .btn-primary { // Style the "Create New Project" button
+        margin-bottom: 1.5rem; // Ensure enough space below the button
+    }
+  
+    .table {
+      margin-top: 1rem; // Space above the table
+      border: 1px solid #dee2e6; // Add a subtle border around the table
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05); // Very light shadow
+  
+      thead th {
+        background-color: $table-head-bg;
+        border-bottom-width: 2px; // Thicker bottom border for header cells
+        font-weight: 600; // Make headers bolder
+        padding: 0.9rem 0.75rem; // Adjust padding
+        vertical-align: middle; // Align text vertically
+      }
+  
+      tbody tr {
+        transition: background-color 0.15s ease-in-out;
+  
+        &:hover {
+          background-color: $table-hover-bg; // Apply hover background
+        }
+  
+        td {
+          padding: 0.9rem 0.75rem; // Match header padding
+          vertical-align: middle; // Align text vertically
+  
+          a { // Style links within table cells
+              color: #007bff;
+              text-decoration: none;
+              font-weight: 500; // Slightly bolder project names
+              &:hover {
+                  text-decoration: underline;
+                  color: #0056b3;
+              }
+          }
+  
+          // Style action buttons
+          .btn {
+              padding: 0.2rem 0.5rem; // Smaller padding for action buttons
+              font-size: 0.8rem; // Smaller font size
+              line-height: 1.2; // Adjust line height
+              margin-right: 0.3rem; // Space between buttons
+          }
+        }
+      }
+  
+      .badge { // Ensure badges have good contrast and padding
+          padding: 0.4em 0.6em;
+          font-size: 0.8rem;
+          font-weight: 500;
+      }
+    }
+  }

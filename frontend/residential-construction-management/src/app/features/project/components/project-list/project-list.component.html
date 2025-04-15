@@ -1,0 +1,69 @@
+<h2>Projects</h2>
+
+<a routerLink="/projects/new" class="btn btn-primary mb-3">Create New Project</a>
+
+<div *ngIf="isLoading" class="alert alert-info">Loading projects...</div>
+<div *ngIf="errorMessage && !isLoading" class="alert alert-danger">{{ errorMessage }}</div>
+
+<div *ngIf="(projects$ | async) as projects">
+  <div *ngIf="!isLoading && !errorMessage"> <table class="table table-striped" *ngIf="projects.length > 0; else noProjects">
+        </table>
+      <ng-template #noProjects>
+        <p>No projects found. Create one!</p>
+      </ng-template>
+  </div>
+</div>
+
+<div *ngIf="projects$ | async as projects; else loading">
+  <table class="table table-striped" *ngIf="projects.length > 0; else noProjects">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Created By</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let project of projects">
+        <td>
+            <a [routerLink]="['/projects', project.projectId]">{{ project.projectName }}</a>
+        </td>
+        <td>{{ project.projectType || 'N/A' }}</td>
+        <td>
+            <span class="badge" [ngClass]="{
+                'bg-light text-dark': project.status === 'Planning',
+                'bg-info': project.status === 'In Progress',
+                'bg-warning text-dark': project.status === 'On Hold',
+                'bg-success': project.status === 'Completed',
+                'bg-secondary': project.status === 'Cancelled'
+            }">
+                 {{ project.status || 'N/A' }}
+            </span>
+        </td>
+        <td>{{ project.startDate ? (project.startDate | date:'yyyy-MM-dd') : 'N/A' }}</td>
+        <td>{{ project.endDate ? (project.endDate | date:'yyyy-MM-dd') : 'N/A' }}</td>
+        <td>{{ project.createdByUsername || 'N/A' }}</td>
+        <td>
+          <a [routerLink]="['/projects/edit', project.projectId]" class="btn btn-sm btn-outline-warning me-1 py-0 px-1" title="Edit Project">
+             <i class="bi bi-pencil-square"></i>
+          </a>
+          <button (click)="deleteProject(project.projectId)" class="btn btn-sm btn-outline-danger py-0 px-1" title="Delete Project">
+             <i class="bi bi-trash"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noProjects>
+    <p>No projects found. Create one!</p>
+  </ng-template>
+</div>
+
+<ng-template #loading>
+  <p>Loading projects...</p>
+</ng-template>

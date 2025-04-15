@@ -1,0 +1,68 @@
+
+
+:host {
+    // Define variables for form styling
+    $form-input-focus-border: #80bdff; // Bootstrap's default focus blue
+    $form-input-focus-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); // Bootstrap's default focus shadow
+  
+    form {
+      max-width: 500px; // Limit form width for better readability on large screens
+      margin: 2rem auto; // Center the form and add top/bottom margin
+      padding: 2rem;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  
+      h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #343a40; // Dark grey heading
+      }
+  
+      .form-group {
+        margin-bottom: 1.5rem; // Increase spacing between form elements
+  
+        label {
+          font-weight: 500; // Slightly bolder labels
+          margin-bottom: 0.5rem;
+          display: block;
+        }
+      }
+  
+      // Enhance input focus state
+      .form-control:focus {
+        border-color: $form-input-focus-border;
+        box-shadow: $form-input-focus-shadow;
+      }
+  
+      // Style the primary submit button
+      .btn-primary {
+        padding: 0.75rem 1.5rem; // Make button slightly larger
+        font-size: 1rem;
+        width: 100%; // Make button full width within its container
+        margin-top: 1rem; // Add space above the button
+        transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  
+        &:disabled {
+          cursor: not-allowed;
+        }
+      }
+  
+      // Style the links at the bottom
+      .mt-3 { // Targets the "Don't have an account?" div
+          text-align: center;
+          font-size: 0.9rem;
+          a {
+              color: #007bff; // Standard link blue
+              text-decoration: none;
+              &:hover {
+                  text-decoration: underline;
+              }
+          }
+      }
+  
+      .alert { // Style alerts within the form
+          margin-top: 1.5rem;
+      }
+    }
+  }

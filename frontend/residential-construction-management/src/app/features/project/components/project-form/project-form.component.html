@@ -1,0 +1,63 @@
+<h2>{{ isEditMode ? 'Edit Project' : 'Create New Project' }}</h2>
+
+<div *ngIf="isLoading" class="alert alert-info">Loading...</div>
+<div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+
+<form [formGroup]="projectForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading" novalidate> <div class="form-group mb-3">
+    <label for="projectName">Project Name *</label>
+    <input type="text" id="projectName" formControlName="projectName" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted || (projectName?.invalid && (projectName?.dirty || projectName?.touched)) }">
+    <div *ngIf="projectName?.invalid && (submitted || projectName?.dirty || projectName?.touched)" class="invalid-feedback">
+      <div *ngIf="projectName?.errors?.['required']">Project Name is required</div>
+      <div *ngIf="projectName?.errors?.['maxlength']">Project Name cannot exceed 100 characters</div>
+    </div>
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="description">Description</label>
+    <textarea id="description" formControlName="description" class="form-control" rows="3"></textarea>
+    </div>
+
+  <div class="form-group mb-3">
+    <label for="projectType">Project Type</label>
+    <select id="projectType" formControlName="projectType" class="form-select"
+            [ngClass]="{ 'is-invalid': submitted || (projectType?.invalid && (projectType?.dirty || projectType?.touched)) }">
+        <option value="" disabled selected>Select Type...</option>
+        <option *ngFor="let type of projectTypes" [value]="type">{{ type }}</option>
+    </select>
+      <div *ngIf="projectType?.invalid && (submitted || projectType?.dirty || projectType?.touched)" class="invalid-feedback">
+        <div *ngIf="projectType?.errors?.['maxlength']">Type cannot exceed 50 characters</div>
+        </div>
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="status">Status</label>
+      <select id="status" formControlName="status" class="form-select"
+              [ngClass]="{ 'is-invalid': submitted || (status?.invalid && (status?.dirty || status?.touched)) }">
+        <option value="" disabled selected>Select Status...</option>
+        <option *ngFor="let stat of projectStatuses" [value]="stat">{{ stat }}</option>
+    </select>
+      <div *ngIf="status?.invalid && (submitted || status?.dirty || status?.touched)" class="invalid-feedback">
+          <div *ngIf="status?.errors?.['maxlength']">Status cannot exceed 30 characters</div>
+          </div>
+  </div>
+
+  <div class="form-group mb-3">
+    <label for="startDate">Start Date</label>
+    <input type="date" id="startDate" formControlName="startDate" class="form-control">
+    </div>
+
+  <div class="form-group mb-3">
+    <label for="endDate">End Date</label>
+    <input type="date" id="endDate" formControlName="endDate" class="form-control">
+     </div>
+
+
+  <div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-secondary me-2" routerLink="/projects" [disabled]="isLoading">Cancel</button>
+    <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+      <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+      {{ isLoading ? (isEditMode ? 'Updating...' : 'Creating...') : (isEditMode ? 'Update Project' : 'Create Project') }}
+    </button>
+  </div>
+</form>

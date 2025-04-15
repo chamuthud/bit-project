@@ -1,0 +1,24 @@
+// src/app/app.component.scss
+
+:host {
+    display: block; // Ensure the host element behaves like a block
+  }
+  
+  .app-container {
+    display: flex; // 1. Use Flexbox
+    flex-direction: column; // 2. Stack children vertically (header, main, footer)
+    min-height: 100vh; // 3. Make the container at least the full viewport height
+  }
+  
+  .main-content {
+    flex-grow: 1; // 4. Allow the main content area to grow and take available space
+    // Optional: Add some default padding to the main content area
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+  
+  // Optional: Ensure header and footer don't shrink
+  app-header,
+  app-footer {
+     flex-shrink: 0;
+  }

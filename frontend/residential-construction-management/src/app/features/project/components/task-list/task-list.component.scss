@@ -1,0 +1,66 @@
+
+
+:host {
+    
+    $table-hover-bg: #f1f3f5; 
+    $table-head-bg: #e9ecef; 
+  
+    h2 {
+      margin-bottom: 1rem; 
+    }
+  
+    .btn-primary { 
+        margin-bottom: 1.5rem; 
+    }
+  
+    .table {
+      margin-top: 1rem; 
+      border: 1px solid #dee2e6;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+  
+      thead th {
+        background-color: $table-head-bg;
+        border-bottom-width: 2px; 
+        font-weight: 600; 
+        padding: 0.9rem 0.75rem; 
+        vertical-align: middle; 
+      }
+  
+      tbody tr {
+        transition: background-color 0.15s ease-in-out;
+  
+        &:hover {
+          background-color: $table-hover-bg; 
+        }
+  
+        td {
+          padding: 0.9rem 0.75rem; 
+          vertical-align: middle; 
+  
+          a { 
+              color: #007bff;
+              text-decoration: none;
+              font-weight: 500; 
+              &:hover {
+                  text-decoration: underline;
+                  color: #0056b3;
+              }
+          }
+  
+          
+          .btn {
+              padding: 0.2rem 0.5rem; 
+              font-size: 0.8rem; 
+              line-height: 1.2; 
+              margin-right: 0.3rem; 
+          }
+        }
+      }
+  
+      .badge {
+          padding: 0.4em 0.6em;
+          font-size: 0.8rem;
+          font-weight: 500;
+      }
+    }
+  }

@@ -1,0 +1,65 @@
+<h3>{{ pageTitle }}</h3>
+<hr>
+
+<div *ngIf="isLoading" class="alert alert-info">Loading form...</div>
+<div *ngIf="errorMessage && !isLoading" class="alert alert-danger">{{ errorMessage }}</div>
+
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading && projectId">
+  <div class="mb-3">
+    <label for="taskName" class="form-label">Task Name *</label>
+    <input type="text" id="taskName" formControlName="taskName" class="form-control"
+           [ngClass]="{ 'is-invalid': submitted && taskName?.invalid }">
+    <div *ngIf="submitted && taskName?.invalid" class="invalid-feedback">
+      <div *ngIf="taskName?.errors?.['required']">Task Name is required</div>
+      <div *ngIf="taskName?.errors?.['maxlength']">Task Name cannot exceed 150 characters</div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="description" class="form-label">Description</label>
+    <textarea id="description" formControlName="description" class="form-control" rows="3"></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label for="taskStatus" class="form-label">Status *</label>
+     <select id="taskStatus" formControlName="taskStatus" class="form-select"
+             [ngClass]="{ 'is-invalid': submitted && taskStatus?.invalid }">
+        <option *ngFor="let stat of taskStatuses" [value]="stat">{{ stat }}</option>
+    </select>
+     <div *ngIf="submitted && taskStatus?.invalid" class="invalid-feedback">
+         <div *ngIf="taskStatus?.errors?.['required']">Status is required</div>
+    </div>
+  </div>
+
+   <div class="mb-3">
+    <label for="priority" class="form-label">Priority</label>
+     <select id="priority" formControlName="priority" class="form-select">
+        <option [ngValue]="null">Select Priority...</option> <option *ngFor="let prio of taskPriorities" [value]="prio.value">{{ prio.label }}</option>
+    </select>
+  </div>
+
+  <div class="row mb-3">
+      <div class="col-md-6">
+        <label for="startDate" class="form-label">Start Date</label>
+        <input type="date" id="startDate" formControlName="startDate" class="form-control">
+      </div>
+
+      <div class="col-md-6">
+        <label for="endDate" class="form-label">End Date</label>
+        <input type="date" id="endDate" formControlName="endDate" class="form-control">
+      </div>
+  </div>
+
+
+  <div class="d-flex justify-content-end mt-4">
+    <button type="button" class="btn btn-secondary me-2" (click)="cancel()" [disabled]="isLoading">Cancel</button>
+    <button type="submit" class="btn btn-primary" [disabled]="taskForm.invalid || isLoading">
+       <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+       {{ isLoading ? (isEditMode ? 'Updating...' : 'Creating...') : (isEditMode ? 'Update Task' : 'Create Task') }}
+    </button>
+  </div>
+</form>
+
+<div *ngIf="!projectId && !isLoading" class="alert alert-warning">
+    Project context is missing. Cannot display task form.
+</div>

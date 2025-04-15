@@ -1,0 +1,45 @@
+<h4>Tasks</h4>
+
+<button (click)="addTask()" class="btn btn-success btn-sm mb-3" [disabled]="!projectId">Add New Task</button>
+
+<div *ngIf="isLoading" class="alert alert-info">Loading tasks...</div>
+<div *ngIf="errorMessage && !isLoading" class="alert alert-danger">{{ errorMessage }}</div>
+
+<div *ngIf="tasks$ | async as tasks; else noTasksOrLoading">
+  <table class="table table-sm table-hover" *ngIf="tasks.length > 0">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Priority</th>
+        <th>Assigned To</th>
+        <th>End Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let task of tasks">
+            <td>{{ task.taskName }}</td>
+            <td>
+              <span class="badge" [ngClass]="{
+                  'bg-secondary': task.taskStatus === 'To Do',
+                  'bg-primary': task.taskStatus === 'In Progress',
+                  'bg-success': task.taskStatus === 'Done',
+                  'bg-danger': task.taskStatus === 'Blocked'
+                }">
+                  {{ task.taskStatus ?? 'N/A' }}  </span>
+            </td>
+            <td>{{ task.priority ?? 'N/A' }}</td>  <td>{{ task.assignedToUsername ?? '-' }}</td> <td>{{ task.endDate ? (task.endDate | date:'yyyy-MM-dd') : 'N/A' }}</td> <td>
+              <button (click)="editTask(task.taskId)" class="btn btn-sm btn-outline-warning me-1 py-0 px-1" title="Edit Task">
+                <i class="bi bi-pencil-square"></i> </button>
+              <button (click)="deleteTask(task.taskId)" class="btn btn-sm btn-outline-danger py-0 px-1" title="Delete Task">
+                  <i class="bi bi-trash"></i> </button>
+            </td>
+          </tr>
+    </tbody>
+  </table>
+  <p *ngIf="tasks.length === 0 && !isLoading && !errorMessage">No tasks found for this project.</p>
+</div>
+
+<ng-template #noTasksOrLoading>
+    </ng-template>
